@@ -18,11 +18,13 @@ define('DB_PORT', $db_port);
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Create connection
-$conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, DB_PORT);
+// Create connection with SSL
+$conn = mysqli_init();
+$conn->ssl_set(NULL, NULL, NULL, NULL, NULL);
+$conn->real_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, DB_PORT, NULL, MYSQLI_CLIENT_SSL);
 
 // Check connection
-if ($conn->connect_error) {
+if ($conn->connect_errno) {
     die("Connection failed: " . $conn->connect_error);
 }
 
