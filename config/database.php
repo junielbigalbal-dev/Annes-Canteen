@@ -1,9 +1,15 @@
 <?php
 // Database configuration
-define('DB_HOST', 'localhost');
-define('DB_USERNAME', 'root');  // Default XAMPP username
-define('DB_PASSWORD', '');      // Default XAMPP password is empty
-define('DB_NAME', 'school_canteen');
+// Database configuration
+$db_host = getenv('DB_HOST') ?: 'localhost';
+$db_user = getenv('DB_USER') ?: 'root';
+$db_pass = getenv('DB_PASS') !== false ? getenv('DB_PASS') : '';
+$db_name = getenv('DB_NAME') ?: 'school_canteen';
+
+define('DB_HOST', $db_host);
+define('DB_USERNAME', $db_user);
+define('DB_PASSWORD', $db_pass);
+define('DB_NAME', $db_name);
 
 // Error reporting
 error_reporting(E_ALL);
