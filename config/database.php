@@ -6,17 +6,20 @@ $db_user = getenv('DB_USER') ?: 'root';
 $db_pass = getenv('DB_PASS') !== false ? getenv('DB_PASS') : '';
 $db_name = getenv('DB_NAME') ?: 'school_canteen';
 
+$db_port = getenv('DB_PORT') ?: 3306;
+
 define('DB_HOST', $db_host);
 define('DB_USERNAME', $db_user);
 define('DB_PASSWORD', $db_pass);
 define('DB_NAME', $db_name);
+define('DB_PORT', $db_port);
 
 // Error reporting
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Create connection
-$conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+$conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, DB_PORT);
 
 // Check connection
 if ($conn->connect_error) {
